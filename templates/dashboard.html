@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Data Input</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Centered Form */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Weather Form */
+        .weather-form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .weather-form h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Input Fields */
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            color: #000;
+        }
+
+        .form-group input:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+
+        /* Icons */
+        .weather-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+        }
+
+        .weather-icons img {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Submit Button */
+        .weather-form button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2575fc;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .weather-form button:hover {
+            background: #6a11cb;
+        }
+
+        /* Result Box */
+        .result {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body onload="document.body.style.opacity = 1;">
+
+    <div class="container">
+        <div class="weather-form">
+            <h2>Weather Data Input</h2>
+            <div class="weather-icons">
+                <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Sun">
+                <img src="https://cdn-icons-png.flaticon.com/512/414/414927.png" alt="Cloud">
+                <img src="https://cdn-icons-png.flaticon.com/512/1163/1163624.png" alt="Rain">
+            </div>
+
+            <form id="weatherInputForm" action="{{ url_for('dashboard') }}" method="post">
+                <!-- Month -->
+                <div class="form-group">
+                    <label for="month"><i class="fa-solid fa-calendar"></i> Month:</label>
+                    <input type="number" id="month" name="month" placeholder="Enter month (1-12)" min="1" max="12" required>
+                </div>
+
+                <!-- Precipitation -->
+                <div class="form-group">
+                    <label for="precipitation"><i class="fa-solid fa-cloud-rain"></i> Precipitation (mm):</label>
+                    <input type="number" id="precipitation" name="precipitation" placeholder="Enter precipitation" step="0.0000000000000001" required>
+                </div>
+
+                <!-- Max Temperature -->
+                <div class="form-group">
+                    <label for="maxTemp"><i class="fa-solid fa-temperature-high"></i> Maximum Temperature (°C):</label>
+                    <input type="number" id="maxTemp" name="maxTemp" placeholder="Enter max temperature" step = "0.000001"required>
+                </div>
+
+                <!-- Min Temperature -->
+                <div class="form-group">
+                    <label for="minTemp"><i class="fa-solid fa-temperature-low"></i> Minimum Temperature (°C):</label>
+                    <input type="number" id="minTemp" name="minTemp" placeholder="Enter min temperature" step = "0.0000001" required>
+                </div>
+
+                <!-- Wind Speed -->
+                <div class="form-group">
+                    <label for="windSpeed"><i class="fa-solid fa-wind"></i> Wind Speed (km/h):</label>
+                    <input type="number" id="windSpeed" name="windSpeed" placeholder="Enter wind speed" step = "0.00000000000000001" required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit</button>
+            </form>
+
+            <!-- Result -->
+            <div class="result" id="result">
+                <b>The prediction is: {{ result }}</b>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

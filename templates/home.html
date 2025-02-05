@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App - Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 0.5rem 0 0;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #2575fc;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .navbar .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #2575fc;
+    }
+
+    .navbar .nav-links .btn {
+      background: #2575fc;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .navbar .nav-links .btn:hover {
+      background: #6a11cb;
+    }
+
+    .navbar .menu-icon {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar .nav-links.active {
+        display: flex;
+      }
+
+      .navbar .menu-icon {
+        display: block;
+      }
+    }
+
+    /* Weather Gallery */
+    .weather-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 2rem;
+      justify-content: center;
+      background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+    }
+
+    .weather-gallery .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .weather-gallery .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .weather-gallery .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .weather-gallery .card h3 {
+      font-size: 1.5rem;
+      margin: 1rem 0 0.5rem;
+      color: #2575fc;
+    }
+
+    .weather-gallery .card p {
+      font-size: 1rem;
+      color: #555;
+      padding: 0 1rem 1rem;
+    }
+
+    /* About Section */
+    .about-section {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: #f4f4f4;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #2575fc;
+    }
+
+    .contact-section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .contact-section a {
+      color: #2575fc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Weather App</h1>
+    <p>Your reliable source for weather forecasts</p>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">WeatherApp</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="/login" class="btn">Login / Signup</a>
+    </div>
+    <div class="menu-icon" id="menuIcon">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Weather Gallery -->
+  <section class="weather-gallery">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1601134467661-3d775b999c8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sunny Weather">
+      <h3>Sunny</h3>
+      <p>Enjoy the bright and warm weather with clear skies.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1492011221367-f47e3ccd77a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Rainy Weather">
+      <h3>Rainy</h3>
+      <p>Stay dry and cozy during rainy days.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Snowy Weather">
+      <h3>Snowy</h3>
+      <p>Experience the magic of snowfall.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cloudy Weather">
+      <h3>Cloudy</h3>
+      <p>Perfect weather for a relaxing day indoors.</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <h2>About Us</h2>
+    <p>
+      Welcome to Weather App, your go-to source for accurate and up-to-date weather information. 
+      Our mission is to provide you with the most reliable weather forecasts, helping you plan your 
+      day with confidence. Whether it's sunny, rainy, or snowy, we've got you covered!
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <h2>Contact Us</h2>
+    <p>
+      Have questions or feedback? Feel free to reach out to us at 
+      <a href="mailto:support@weatherapp.com">support@weatherapp.com</a>. 
+      We'd love to hear from you!
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Weather App. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle Navbar for Mobile
+    const menuIcon = document.getElementById('menuIcon');
+    const navLinks = document.getElementById('navLinks');
+
+    menuIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

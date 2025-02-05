@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Explorer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .city-input {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .city-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            background: #ff6b6b;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #e63946;
+        }
+
+        .prediction-result {
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-bg {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 10s infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(10px) translateX(-10px); }
+            75% { transform: translateY(-10px) translateX(20px); }
+        }
+
+        /* Decorative circles */
+        .circle1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .circle2 { top: 70%; left: 80%; animation-delay: 2s; width: 100px; height: 100px; }
+        .circle3 { top: 30%; left: 85%; animation-delay: 4s; width: 120px; height: 120px; }
+        .circle4 { top: 80%; left: 20%; animation-delay: 6s; width: 80px; height: 80px; }
+
+    </style>
+</head>
+<body>
+    <div class="floating-bg circle1"></div>
+    <div class="floating-bg circle2"></div>
+    <div class="floating-bg circle3"></div>
+    <div class="floating-bg circle4"></div>
+
+    <div class="container">
+        <h1>Enter Your City</h1>
+        <form action="/predict" method="post">
+            <div class="input-group">
+                <input type="text" class="city-input" name="city" placeholder="Search for a city..." required>
+            </div>
+            <button type="submit" class="submit-btn">Get Weather Prediction</button>
+        </form>
+    </div>
+
+    <div class="prediction-result">
+        The Prediction is: {{ result }}
+    </div>
+</body>
+</html>

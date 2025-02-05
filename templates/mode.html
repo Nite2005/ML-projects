@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Mode</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .button {
+            display: block;
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .button.auto {
+            background-color: #28a745;
+        }
+
+        .button.auto:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Manual Predict Button -->
+        <button class="button manual" onclick="window.location.href='/dashboard'">Manual Predict</button>
+
+        <!-- Auto Predict Button -->
+        <button class="button auto" onclick="window.location.href='/predict'">Auto Predict</button>
+    </div>
+</body>
+</html>

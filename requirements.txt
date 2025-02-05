@@ -1,0 +1,10 @@
+flask 
+scikit-learn
+pandas
+numpy 
+xgboost
+catboost
+psycopg2
+dill
+
+python-dotenv
